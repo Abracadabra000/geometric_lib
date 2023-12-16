@@ -15,7 +15,7 @@ def area(r):
     Output:
         78.5398163
     '''
-    return math.pi * r * r
+    return math.pi * r
 
 
 def perimeter(r):
