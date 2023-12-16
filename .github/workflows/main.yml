@@ -1,4 +1,4 @@
-name: Test project script
+name: Test
 
 on:
   push:
@@ -6,13 +6,16 @@ on:
 
 jobs:
   test:
-    runs-on: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.os }}
         uses: actions/setup-python@v4
         with:
           python-version: 3.8
-      - name: Run unittest
+      - name: Run unit tests
         run: python -m unittest testFile.py
